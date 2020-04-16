@@ -52,7 +52,6 @@ public class Festa {
             elementi++;
             } catch (FestaException exception){
             }
-
             return;
         }
     }

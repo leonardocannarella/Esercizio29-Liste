@@ -1,9 +1,13 @@
+import java.util.Arrays;
+
 public class Test {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FestaException {
         Invitato i1 = new Invitato("Bianchi Giovanni", 'M', "0586 854822");
         Invitato i2 = new Invitato("Rossi Marta", 'F', "0586 844853");
         Invitato i3 = new Invitato("Neri Marco", 'M', "0586 444722");
         Invitato i4 = new Invitato("Verdi Roberta", 'F', "0586 974824");
+        Invitato i5 = new Invitato("Leonardo Cannarella", 'M', "334 9086784");
+        Invitato i6 = new Invitato("Raoul Cannarella", 'M', "345 0453672");
 
         Festa f = new Festa();
 
@@ -72,5 +76,17 @@ public class Test {
         } catch (FestaException exception) {
             System.out.println(exception.getError());
         }
+
+        f.inserisciInTesta(i5);
+        f.inserisciInCoda(i6);
+        System.out.println(f.toString());
+        try
+        {
+            f.eliminaInPosizione(2);
+        } catch (FestaException ex)
+        {
+            System.out.println(ex.getError());
+        }
+        System.out.println(f.toString());
     }
 }
