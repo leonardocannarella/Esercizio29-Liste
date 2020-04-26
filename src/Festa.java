@@ -143,6 +143,29 @@ public class Festa {
         head=n2;
     }
 
+    public String isSublist(Festa f)
+    {
+        Nodo p = head;
+        Nodo festa = f.head;
+        String listaAtt = "";
+        String listaPassata = "";
+
+        listaAtt = p.getInfo().toString()+"\n"+visita(p.getLink());
+        listaPassata = festa.getInfo().toString()+"\n"+visita(p.getLink());
+
+        if(f.head==null)
+        {
+            return "La lista è vuota";
+        }
+
+        if(listaAtt.contains(listaPassata))
+        {
+            return "É una sottolista";
+        }
+        return "Non è una sottolista";
+
+    }
+
 
     public int shuffle(int k, int h){
         if(k==h) //stessa posizione

@@ -9,11 +9,17 @@ public class Test {
         Invitato i4 = new Invitato("Verdi Roberta", 'F', "0586 974824");
         Invitato i5 = new Invitato("Leonardo Cannarella", 'M', "334 9086784");
         Invitato i6 = new Invitato("Mario Rossi", 'M', "345 0453672");
+        Invitato i7 = new Invitato("Tizio Caio", 'M', "344 6509847");
 
         Invitato [] v = {i1,i2,i3,i4,i5,i6};
-        Festa f = new Festa(v);
+        Invitato [] vSub = {i1,i3,i6};
 
-        System.out.println(f.toString());
+        Festa f = new Festa(v);
+        Festa fSub = new Festa(vSub);
+
+        System.out.println(f.isSublist(fSub));
+
+        // System.out.println(f.toString());
 
 
         /*
