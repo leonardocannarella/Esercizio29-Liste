@@ -12,91 +12,84 @@ public class Test {
         Invitato i7 = new Invitato("Tizio Caio", 'M', "344 6509847");
 
         Invitato [] v = {i1,i2,i3,i4,i5,i6};
-        Invitato [] vSub = {i1,i3,i6};
+        Invitato [] vSub = {i1,i2,i3};
 
-        Festa f = new Festa(v);
-        Festa fSub = new Festa(vSub);
-
-        System.out.println(f.isSublist(fSub));
+        Festa f = new Festa();
 
         // System.out.println(f.toString());
 
+        f.inserisciInTesta(i1);
+        f.inserisciInTesta(i2);
+        f.inserisciInCoda(i3);
 
-        /*
-          f.inserisciInTesta(i1);
-                  f.inserisciInTesta(i2);
-                  f.inserisciInCoda(i3);
+        try {
+            f.inserisciInPosizione(i4, 2);
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.inserisciInPosizione(i4, 2);
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println("Visita ricorsiva: ");
+        System.out.println(f.elenco());
+        System.out.println("------------------");
+        System.out.println(f.toString());
+        System.out.println("------------------");
 
-                  System.out.println("Visita ricorsiva: ");
-                  System.out.println(f.elenco());
-                  System.out.println("------------------");
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
+        try {
+            f.eliminaInPosizione(2);
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.eliminaInPosizione(2);
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println(f.toString());
+        System.out.println("------------------");
 
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
+        try {
+            f.eliminaInCoda();
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.eliminaInCoda();
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println(f.toString());
+        System.out.println("------------------");
 
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
+        try {
+            f.eliminaInTesta();
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.eliminaInTesta();
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println(f.toString());
+        System.out.println("------------------");
 
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
+        try {
+            f.eliminaInPosizione(5);
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.eliminaInPosizione(5);
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println(f.toString());
+        System.out.println("------------------");
+        try {
+            f.eliminaInPosizione(1);
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
-                  try {
-                      f.eliminaInPosizione(1);
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        System.out.println(f.toString());
+        System.out.println("------------------");
 
-                  System.out.println(f.toString());
-                  System.out.println("------------------");
+        try {
+            f.eliminaInPosizione(1);
+        } catch (FestaException exception) {
+            System.out.println(exception.getError());
+        }
 
-                  try {
-                      f.eliminaInPosizione(1);
-                  } catch (FestaException exception) {
-                      System.out.println(exception.getError());
-                  }
+        f.inserisciInTesta(i5);
+        f.inserisciInCoda(i6);
+        f.inserisciInPosizione(i2, 1);
+        System.out.println(f.toString());
 
-                  f.inserisciInTesta(i5);
-                  f.inserisciInCoda(i6);
-                  f.inserisciInPosizione(i2, 1);
-                  System.out.println(f.toString());
-
-                  System.out.println(f.shuffle(3,1));
-                  System.out.println(f.toString());
-              }
-          */
+        f.ourLastFirst();
+        System.out.println(f.toString());
     }
 }

@@ -1,4 +1,3 @@
-
 public class Festa {
     private Nodo head;
     private int elementi;
@@ -58,6 +57,7 @@ public class Festa {
         Nodo p = creaNodo(persona, head);
         head = p;
         elementi++;
+
         return;
     }
 
@@ -65,13 +65,14 @@ public class Festa {
         if (head==null)
             inserisciInTesta(persona);
         else {
-
             try {
-            Nodo p = getLinkPosizione(elementi);
-            p.setLink(creaNodo(persona, null));
-            elementi++;
-            } catch (FestaException exception){
+                Nodo p = getLinkPosizione(elementi);        //Conserva il penultimo
+                p.setLink(creaNodo(persona, null));     //Lo fa puntare all'ultimo, che a sua volta punta a niente
+                elementi++;
             }
+            catch (FestaException exception){
+            }
+
             return;
         }
     }
@@ -81,7 +82,7 @@ public class Festa {
             inserisciInTesta(persona);
         else {
             if (elementi<posizione)
-            inserisciInCoda(persona);
+                inserisciInCoda(persona);
             else {
                 Nodo p = getLinkPosizione(posizione-1);
                 p.setLink(creaNodo(persona, p.getLink()));
@@ -102,7 +103,7 @@ public class Festa {
     public void eliminaInCoda() throws FestaException {
         if (head==null)
             throw new FestaException("Lista vuota");
-        Nodo p=getLinkPosizione(elementi-1);
+        Nodo p = getLinkPosizione(elementi-1);
         p.setLink(null);
         elementi--;
         return;
@@ -112,7 +113,7 @@ public class Festa {
         if (posizione==1)
             eliminaInTesta();
         else
-            if (posizione==elementi)
+            if (elementi<=posizione)
                 eliminaInCoda();
             else {
                 Nodo ps = getLinkPosizione(posizione);
@@ -129,11 +130,12 @@ public class Festa {
         if(head.getLink()==null)
             return;//lista con un solo elemento
 
-        Nodo n1=head;
-        head=head.getLink();
-        Nodo n2=head;
-        Nodo n3=head;
-        n1.setLink(null);
+        Nodo n1=head;                   //Conserva il primo elemento (ORIGINALE)
+        head=head.getLink();            //Elimina il primo elemento e il secondo diventa head
+        Nodo n2=head;                   //Questo punta al primo elemento (ATTUALE)
+        Nodo n3=head;                   //Anche questo punta al primo elemento (ATTUALE)
+
+        n1.setLink(null);               //Elemento originale non punta a niente per la sua destinazione in coda
         while (n2.getLink()!=null){
             n3=n2;
             n2=n2.getLink();
@@ -143,27 +145,25 @@ public class Festa {
         head=n2;
     }
 
+    public void ourLastFirst() throws FestaException{
+        if(head==null)
+            return; //lista vuota
+        if(head.getLink()==null)
+            return;//lista con un solo elemento
+
+        Nodo n1=head;                   //Conserva il primo elemento (ORIGINALE)
+        eliminaInTesta();
+        Nodo n2=getLinkPosizione(elementi);
+        eliminaInCoda();
+
+        inserisciInTesta(n2.getInfo());
+        inserisciInCoda(n1.getInfo());
+    }
+
     public String isSublist(Festa f)
     {
-        Nodo p = head;
-        Nodo festa = f.head;
-        String listaAtt = "";
-        String listaPassata = "";
-
-        listaAtt = p.getInfo().toString()+"\n"+visita(p.getLink());
-        listaPassata = festa.getInfo().toString()+"\n"+visita(p.getLink());
-
-        if(f.head==null)
-        {
-            return "La lista è vuota";
-        }
-
-        if(listaAtt.contains(listaPassata))
-        {
-            return "É una sottolista";
-        }
-        return "Non è una sottolista";
-
+        //TODO Metodo da scrivere
+        return "";
     }
 
 
